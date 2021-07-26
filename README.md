@@ -26,7 +26,6 @@ on:
 
 name: "release_published"
 jobs:
-  # Build the binary using GoReleaser
   move-deployed-stories-to-completed:
     runs-on: ubuntu-latest
     steps:
