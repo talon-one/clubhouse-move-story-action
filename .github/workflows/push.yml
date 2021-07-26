@@ -1,0 +1,28 @@
+# this workflow will run on all pushes.
+on:
+  push:
+
+name: "push"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout code
+        uses: actions/checkout@v2
+      - 
+        uses: actions/setup-node@v2
+      -
+        run: npm run test
+
+  # draft your next release notes as pull requests are merged into "master"
+  # the configuration is at /.github/release-drafter.yml.
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        if: github.ref == 'refs/heads/master'
+        with:
+          config-name: release-drafter.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

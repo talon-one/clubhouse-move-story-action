@@ -1,0 +1,23 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: 'clubhouse-move-story-action'
+description: 'GitHub Action to move Clubhouse Stories to another workflow state'
+author: 'Talon.One GmbH'
+branding:
+  icon: 'server'
+  color: 'blue'
+inputs:
+  github-token:
+    description: 'GitHub token'
+    required: true
+  clubhouse-token:
+    description: 'Clubhouse token'
+    required: true
+  to-state:
+    description: 'A JSON object that defines where stories should be moved to.'
+    required: true
+  pr-regex:
+    description: 'A regex expression to find the pull request number inside the github release body.'
+    required: true
+runs:
+  using: 'node12'
+  main: 'main.js'

@@ -1,0 +1,19 @@
+{
+  "name": "clubhouse-move-story-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to move Clubhouse Stories to another workflow state",
+  "main": "main.js",
+  "scripts": {
+    "test": "node node_modules/jest/bin/jest.js --config=jest.config.js"
+  },
+  "author": "Talon.One GmbH",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "nock": "^13.1.1"
+  }
+}
