@@ -1,5 +1,5 @@
 const { expect } = require("@jest/globals");
-const lib = require("./lib.js");
+const lib = require("../lib.js");
 const nock = require("nock");
 
 function core() {
