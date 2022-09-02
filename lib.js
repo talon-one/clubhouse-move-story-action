@@ -224,6 +224,8 @@ async function main(
   stateMap,
   prExpression
 ) {
+  core.debug(release);
+  core.debug(release.body);
   const pullRequestIds = getPullRequestsFromRelease(release, prExpression);
   if (pullRequestIds.length == 0) {
     core.debug("no pull requests released");
