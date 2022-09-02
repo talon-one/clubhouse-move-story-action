@@ -8,7 +8,7 @@ if (github.context.payload.release === undefined || github.context.payload.relea
 }
 
 const githubToken = core.getInput('github-token', { required: true });
-const clubhouseToken = core.getInput('clubhouse-token', { required: true });
+const shortcutToken = core.getInput('clubhouse-token', { required: true });
 const toState = core.getInput('to-state', { required: true });
 const prExpression = core.getInput('pr-regex', { required: true });
 
@@ -27,7 +27,7 @@ async function run() {
         github.context.repo.owner,
         github.context.repo.repo,
         octokit,
-        clubhouseToken,
+        shortcutToken,
         stateMap,
         new RegExp(prExpression),
     );
