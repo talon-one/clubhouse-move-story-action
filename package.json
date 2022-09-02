@@ -1,6 +1,6 @@
 {
   "name": "clubhouse-move-story-action",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "GitHub Action to move Clubhouse Stories to another workflow state",
   "main": "main.js",
   "scripts": {
