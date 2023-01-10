@@ -191,6 +191,7 @@ function getPullRequestsFromRelease(release, prExpression) {
   const lines = release.body.split("\n");
   for (const line of lines) {
     let matches = prExpression.exec(line.trim());
+    core.debug("matches", matches, "for line", line);
     if (
       matches === null ||
       matches === undefined ||
@@ -206,6 +207,7 @@ function getPullRequestsFromRelease(release, prExpression) {
       if (Number.isNaN(pull_number)) {
         continue;
       }
+      core.debug("PR id found: ", pull_number);
       pr_ids.push(pull_number);
     } catch (e) {
       continue;
@@ -228,7 +230,7 @@ async function main(
   core.debug(release.body);
   const pullRequestIds = getPullRequestsFromRelease(release, prExpression);
   if (pullRequestIds.length == 0) {
-    core.debug("no pull requests released");
+    core.debug("no pull requests released", pullRequestIds);
     return;
   }
 
