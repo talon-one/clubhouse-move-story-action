@@ -4,7 +4,7 @@ async function doShortcutRequest(options, data) {
   return new Promise((resolve, reject) => {
     const req = https.request(options, (res) => {
       if (res.statusCode !== 200) {
-        recject(new Error(`Expected status 200, but got ${res.statusCode}`));
+        reject(new Error(`Expected status 200, but got ${res.statusCode}`));
         return;
       }
       res.setEncoding("utf8");
