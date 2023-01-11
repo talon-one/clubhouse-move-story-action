@@ -7,7 +7,12 @@ it("correctly extracts pull request ids from release description", () => {
     {
       body: `add readme @janczizikow in (#1)`,
     },
-    new RegExp("#(?<pr>\\d+)")
+    new RegExp("#(?<pr>\\d+)"),
+    {
+      debug: (msg) => {
+        console.debug(msg);
+      },
+    }
   );
   expect(result).toStrictEqual([1]);
 });

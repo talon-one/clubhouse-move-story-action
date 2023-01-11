@@ -4,7 +4,7 @@ async function doShortcutRequest(options, data) {
   return new Promise((resolve, reject) => {
     const req = https.request(options, (res) => {
       if (res.statusCode !== 200) {
-        recject(new Error(`Expected status 200, but got ${res.statusCode}`));
+        reject(new Error(`Expected status 200, but got ${res.statusCode}`));
         return;
       }
       res.setEncoding("utf8");
@@ -186,11 +186,12 @@ async function getShortcutStories(
   return stories;
 }
 
-function getPullRequestsFromRelease(release, prExpression) {
+function getPullRequestsFromRelease(release, prExpression, core) {
   let pr_ids = [];
   const lines = release.body.split("\n");
   for (const line of lines) {
     let matches = prExpression.exec(line.trim());
+    core.debug("matches" + JSON.stringify(matches) + "for line" + line);
     if (
       matches === null ||
       matches === undefined ||
@@ -206,6 +207,7 @@ function getPullRequestsFromRelease(release, prExpression) {
       if (Number.isNaN(pull_number)) {
         continue;
       }
+      core.debug("PR id found: " + pull_number);
       pr_ids.push(pull_number);
     } catch (e) {
       continue;
@@ -226,9 +228,13 @@ async function main(
 ) {
   core.debug(release);
   core.debug(release.body);
-  const pullRequestIds = getPullRequestsFromRelease(release, prExpression);
+  const pullRequestIds = getPullRequestsFromRelease(
+    release,
+    prExpression,
+    core
+  );
   if (pullRequestIds.length == 0) {
-    core.debug("no pull requests released");
+    core.debug("no pull requests released", pullRequestIds);
     return;
   }
 

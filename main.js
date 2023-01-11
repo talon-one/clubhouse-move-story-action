@@ -13,6 +13,7 @@ const toState = core.getInput('to-state', { required: true });
 const prExpression = core.getInput('pr-regex', { required: true });
 
 const stateMap = JSON.parse(toState);
+core.info("used PR expression :" + prExpression);
 
 if (typeof(stateMap) !== 'object' || Object.prototype.toString.call(stateMap) !== '[object Object]') {
     core.error('to-state is not an JSON object');
